@@ -1,0 +1,23 @@
+/* Make the Dashboard Responsive */
+@media (max-width: 768px) {
+    .dashboard-nav ul {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .dashboard-nav ul li {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Recommendations Section on Mobile */
+@media (max-width: 768px) {
+    .recommendations-grid {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+    }
+
+    .recommendation-item {
+        margin-bottom: 1.5rem;
+    }
+}
