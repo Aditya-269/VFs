@@ -4,13 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fashion Stylist Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
+
+    <!-- GSAP and ScrollTrigger CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader">Fashion Stylist</div>
+    </div>
+
+    <!-- Main Content -->
     <header>
         <h1>Fashion Stylist Dashboard</h1>
     </header>
+
     <main class="homepage">
         <section class="dashboard-nav">
             <ul>
@@ -22,9 +35,60 @@
                 <li><a href="settings.html">Settings</a></li>
             </ul>
         </section>
+
+        <section class="recommendations">
+            <h2>Latest Recommendations</h2>
+            <div class="recommendations-grid">
+                <div class="recommendation-item">
+                    <img src="https://source.unsplash.com/300x300/?fashion" alt="Outfit 1">
+                    <p>Trendy Summer Look</p>
+                    <button>Save</button>
+                    <button>Buy Now</button>
+                </div>
+                <div class="recommendation-item">
+                    <img src="https://source.unsplash.com/300x300/?model" alt="Outfit 2">
+                    <p>Casual Weekend Outfit</p>
+                    <button>Save</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+        </section>
     </main>
+
     <footer>
-        <p>&copy; 2024 Fashion Stylist Dashboard. All rights reserved.</p>
+        <p>&copy; 2024 Fashion Stylist Dashboard</p>
     </footer>
+
+    <!-- GSAP Script for Animations -->
+    <script>
+        // Check if it's the first load of the session
+        if (!sessionStorage.getItem("loaded")) {
+            // Trigger the loading screen animation
+            window.addEventListener('load', () => {
+                gsap.to('#loading-screen', { opacity: 0, duration: 1, display: 'none' });
+            });
+
+            // Set the flag to indicate the page has loaded
+            sessionStorage.setItem("loaded", "true");
+        } else {
+            // If the page has already loaded once, hide the loading screen immediately
+            document.getElementById('loading-screen').style.display = 'none';
+        }
+
+        // Scroll-triggered animations for recommendations
+        gsap.utils.toArray('.recommendation-item').forEach((item) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 80%',
+                    toggleActions: 'play none none reverse'
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: 'power4.out'
+            });
+        });
+    </script>
 </body>
 </html>
