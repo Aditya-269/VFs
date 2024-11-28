@@ -4,8 +4,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recommendations</title>
-    <link rel="stylesheet" href="responsive.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+  /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background: linear-gradient(180deg, #1a1a1a, #2c2c2c);
+    color: #f0f0f0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #ff6f61, #de6f8b);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 2.5rem; /* Increased font size for header */
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Enhanced shadow for depth */
+}
+
+/* Header Navigation */
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem; /* Increased font size for nav */
+    margin-top: 1rem;
+    display: inline-block;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #ffe6e6;
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+main h2 {
+    text-align: center;
+    font-size: 2.8rem; /* Increased size for more impact */
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+/* Recommendations Grid */
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Increased min width */
+    gap: 1.5rem;
+}
+
+/* Recommendation Item */
+.recommendation-item {
+    background: #3e3e3e;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    position: relative;
+}
+
+.recommendation-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); /* Enhanced hover shadow */
+}
+
+/* Image Styling */
+.recommendation-item img {
+    width: 100%;
+    height: 250px; /* Increased height */
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.recommendation-item:hover img {
+    transform: scale(1.1); /* Slightly larger scale on hover */
+}
+
+/* Text Styling */
+.recommendation-item p {
+    padding: 1rem;
+    font-size: 1.2rem; /* Increased font size for better readability */
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+}
+
+/* Buttons */
+.recommendation-item button {
+    padding: 0.5rem 1.5rem; /* Increased padding */
+    margin: 0.5rem;
+    background: linear-gradient(135deg, #ff6f61, #de6f8b);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.1rem; /* Slightly larger font for buttons */
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.recommendation-item button:hover {
+    background: linear-gradient(135deg, #de6f8b, #ff6f61);
+    transform: translateY(-3px);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: linear-gradient(135deg, #ff6f61, #de6f8b);
+    color: white;
+    font-size: 1rem;
+    border-radius: 20px 20px 0 0;
+    margin-top: 2rem;
+}
+
+
+
+    </style>
 </head>
 <body>
     <header>
@@ -15,22 +148,53 @@
     <main>
         <h2>Your Personalized Outfit Suggestions</h2>
         <div class="recommendations-grid">
-            <div class="recommendation-item">
-                <img src="../images/outfit1.jpg" alt="Outfit 1">
-                <p>Stylish Outfit 1</p>
-                <button>Save</button>
-                <button>Buy Now</button>
-            </div>
-            <div class="recommendation-item">
-                <img src="../images/outfit2.jpg" alt="Outfit 2">
-                <p>Casual Outfit 2</p>
-                <button>Save</button>
-                <button>Buy Now</button>
-            </div>
+        
+           
         </div>
     </main>
     <footer>
         <p>&copy; 2024 Fashion Stylist Dashboard</p>
     </footer>
+
+    <script>
+        const grid = document.querySelector('.recommendations-grid');
+        const outfits = [
+            { name: "Boho Chic", img: "https://plus.unsplash.com/premium_photo-1664383006381-367efecb7339?q=80&w=2572&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            { name: "Urban Casual", img: "https://neemans.com/cdn/shop/files/ND_-_Urban_Casuals_-_Fusion_Black_-_Web_Optimized_i_368fb72f-b50d-453a-9622-f1e053f2e653_800x.jpg?v=1724988632" },
+            { name: "Classic Denim", img: "https://cdn.shopify.com/s/files/1/0023/1342/0889/collections/CLASSIC_JEANS_SLIM_MidnightBlue_2.jpg?v=1699620876" },
+            { name: "Summer Vibes", img: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRG71syEtRpo_fZO0QhDNF70Qe6Mrkbf8ecax542PayGH2LGcRR9Zt2lYQw-z7TGJNBUhit6A5pDTPi71LbolEOorf4Xk_QEKSMmWtDNxtw" },
+            { name: "Vintage Allure", img: "https://www.candere.com/media/jewellery/images/KC03060_1.jpg" },
+            { name: "Modern Elegance", img: "https://images.unsplash.com/photo-1571513722275-4b41940f54b8?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+            { name: "Beach Getaway", img: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR6t2HkJehmFNOl6elHI9xDEB6XnPg1MhM1baPvhrwltrtuumcuX6yWh9pVel-eUROCks4wUXnFQ9VsyxYP581EkVyoFPkROS-MgGqjZgw" },
+            { name: "Edgy Black", img: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTYUQr0JuDGlsmbJaLzIr6AuaGIBA0v4DCxyrJ_4hCsBL1MB6MBs4Cq4f0Jr0pPJTIy7b9GHCSQp2iXzJ4fqnDhzNzDqVglfN7-reWVse4mmcaZzPvJomWaZQ" },
+            { name: "Floral Fiesta", img: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQMfnA9CZWV0zEXle90JQq15DtHkJG_Xmlmzbix0hl5b2bGPPyIirTQh76zN3rU6zBZjwcik3L920tV5pk7j_inRKTDPbzyhuYfVp9mSX2d" },
+            { name: "Party Glam", img: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSQyFspDHal2oebFxhoLAJKnU4O0IYZgPMGpVqVwXIdCT2s3NnP0C5liPRtH8N_pSTfRiDwY0zkJINKbyP_WQV1zH3_B79zDdu61kgB9vcvTmHay7i2BG4k" },
+            { name: "Streetwise", img: "https://getketchadmin.getketch.com/product/8905745091318/660/TTTS000770_2.jpg" },
+            { name: "Sporty Spice", img: "https://m.media-amazon.com/images/I/61GGgXCAURL._AC_SY879_.jpg" },
+            { name: "Winter Warmth", img: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRr2qpcEBXAVPDuHWPmwR045dGbMzAdtkrEWqQOTUOXSrza16Msb2SiPjYrITcM7sHpWcuNkRkhFXLUhfktwSBl157jIwJdIfhY6JM4Oa8" },
+            { name: "Autumn Hues", img: "https://assets.ajio.com/medias/sys_master/root/20240929/QICB/66f8c237f9b8ef490b7bb67c/-473Wx593H-700503607-green-MODEL.jpg" },
+            { name: "Minimalist White", img: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRZ9l9SACILVUaFjYTgNhqsXVB4nv_Uhuj9D9fRbPmXinqlzA8gSdteoUFHo3YeBCjSdyVgrwji7DGPDKjDl2b2CA-Ynit9d03GgvceouA" },
+            { name: "Bold Patterns", img: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSCd1S3K-s-S88w1w6S1Gxo-HSwcP4d0BDmPW8TVS8rtdY2I6h3DyL7nR4Ixxsmv-5bXCg0a5kVWzGEw0EOSjrqmNWsMPwKLoRDxew0Q4sJ" },
+            { name: "Monochrome Magic", img: "https://assets.ajio.com/medias/sys_master/root/20240911/48QJ/66e12b616f60443f316d6f55/-473Wx593H-442692887-olive-MODEL.jpg" },
+            { name: "Sophisticated Style", img: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSYBdhcb-Ebx_pVUxVne7iwZNV75cyVrLQRj9mCcdCirv_JYBqiEzPqMOS8yCxECsCRZL4d47YEw4YfaeqFMi280mjSmrzsKUAGWRWociU" },
+            { name: "Playful Prints", img: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcThD8iXidnYhy4elgCjk5EhIzYpWm0tJXB-R30X2lUs8Y6ffCOyv9mW7jgQ2QraLxxjmUM4ixIo1zQA73kJU6stTR3eb-NQQ5jj9uItIyZxLDCxhsCAx-5W" },
+            { name: "Evening Gown", img: "https://www.newyorkdress.com/cdn/shop/products/LaDivine-CD867_emerald_3_600x.jpg?v=1701190423" },
+           
+        ];
+    
+        outfits.forEach(outfit => {
+            const item = document.createElement('div');
+            item.className = 'recommendation-item';
+            item.innerHTML = `
+                <img src="${outfit.img}" alt="${outfit.name}">
+                <p>${outfit.name}</p>
+                <button>Save</button>
+                <button>Buy Now</button>
+            `;
+            grid.appendChild(item);
+        });
+    </script>
+    
+    
 </body>
 </html>
