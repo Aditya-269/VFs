@@ -4,264 +4,252 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Body Analysis</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&display=swap">
     <style>
-        /* CSS Variables */
+        /* Theme Colors */
         :root {
-            --primary-color: #ff69b4;
-            --background-color: #ffccd9;
-            --text-color: #333;
-            --card-bg-color: rgba(255, 255, 255, 0.95);
-            --input-border-color: #ccc;
-            --hover-color: #ff85b0;
-            --shadow-color: rgba(0, 0, 0, 0.2);
+            --theme-color: #92614c; /* Primary theme color */
+            --theme-gradient: linear-gradient(90deg, #92614c, #d6a476); /* Gradient for header */
+            --theme-color-25: rgba(146, 97, 76, 0.25); /* Light variant */
+            --theme-color-50: rgba(146, 97, 76, 0.5); /* Medium variant */
+            --label-color: #5d3d2b; /* Label color */
+            --input-bg: #f9f4f1; /* Input box background */
+            --text-color: #333; /* Default text color */
         }
 
         /* General Styles */
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--background-color);
             color: var(--text-color);
-            line-height: 1.6;
+            background-color: #fff;
             overflow-x: hidden;
         }
 
         .background-video {
             position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             z-index: -1;
             opacity: 0.6;
-            object-fit: cover;
         }
 
-        /* Header Styles */
         header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 0;
+            background: var(--theme-gradient);
+            color: #fff;
+            padding: 2rem 0;
             text-align: center;
-            font-size: 2rem;
-            font-family: 'Playfair Display', serif;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            box-shadow: 0 4px 6px var(--shadow-color);
-        }
-
-        nav {
-            margin-top: 0.5rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
+            font-size: 2.5rem;
             font-weight: 600;
-            padding: 0.5rem 1rem;
-            margin: 0 0.5rem;
-            border-radius: 0.5rem;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
         }
 
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
+        header h1 {
+            position: relative;
+            display: inline-block;
+            font-size: 3rem;
+            animation: floatText 3s infinite ease-in-out;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
-        /* Main Content */
-        main {
+        @keyframes floatText {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 3rem auto;
             padding: 2rem;
-            margin: auto;
-            max-width: 700px;
-            background-color: var(--card-bg-color);
-            box-shadow: 0 4px 8px var(--shadow-color);
-            border-radius: 1rem;
-            margin-top: 3rem;
         }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .body-analysis-section {
+            background-color: var(--theme-color-25);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transform: translateY(50px);
+            opacity: 100;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-            width: 100%;
+        .body-analysis-section h1 {
+            color: var(--theme-color);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
         }
 
         label {
-            margin-bottom: 0.5rem;
+            font-size: 1rem;
             font-weight: 600;
-            font-size: 1.2rem;
+            color: var(--label-color);
+            margin-bottom: 0.5rem;
             display: block;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        label:hover {
+            color: var(--theme-color);
+            transform: translateX(5px);
         }
 
         input[type="file"],
         input[type="text"] {
-            padding: 0.75rem;
-            font-size: 1rem;
-            border: 1px solid var(--input-border-color);
-            border-radius: 0.5rem;
             width: 100%;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        input[type="file"]:hover,
-        input[type="text"]:hover {
-            border-color: var(--primary-color);
+            padding: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            border: 2px solid var(--theme-color-50);
+            border-radius: 8px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
         }
 
         input[type="file"]:focus,
         input[type="text"]:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 2px 10px rgba(255, 105, 180, 0.5);
+            border-color: var(--theme-color);
+            box-shadow: 0 0 12px rgba(146, 97, 76, 0.5);
             outline: none;
+            animation: pulse 1.5s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.02);
+            }
         }
 
         button {
-            padding: 0.75rem 1.5rem;
+            background-color: var(--theme-color);
+            color: #fff;
             font-size: 1rem;
-            color: white;
-            background-color: var(--primary-color);
+            padding: 0.9rem 1.5rem;
             border: none;
-            border-radius: 0.5rem;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         button:hover {
-            background-color: var(--hover-color);
-            transform: scale(1.05);
+            background-color: var(--theme-color-50);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
         }
 
-        .testimonials {
+        .recommendation {
             margin-top: 2rem;
+            text-align: center;
         }
 
-        .testimonial {
-            background-color: white;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 1rem;
-            opacity: 0;
-            transform: translateY(50px);
+        .recommendation a {
+            color: var(--theme-color);
+            text-decoration: underline;
+            font-weight: 600;
+            transition: color 0.3s ease;
         }
 
-        .social-links {
-            margin-top: 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
+        .recommendation a:hover {
+            color: var(--theme-color-50);
         }
 
-        .social-links a {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .social-links a:hover {
-            transform: scale(1.2);
-        }
-
-        /* Footer Styles */
         footer {
             text-align: center;
+            background-color: var(--theme-color);
+            color: #fff;
             padding: 1rem 0;
-            background-color: var(--primary-color);
-            color: white;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            box-shadow: 0 -2px 5px var(--shadow-color);
-            font-size: 0.9rem;
+            margin-top: 2rem;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
+    <!-- Video Background -->
     <video autoplay muted loop class="background-video">
         <source src="video3.mp4_1732788270207.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
+    <!-- Header -->
     <header>
         <h1>Body Analysis</h1>
-        <nav>
-            <a href="index.html">Back to Dashboard</a>
-        </nav>
     </header>
 
-    <main>
-        <form>
-            <div class="form-group">
-                <label for="bodyImage">Upload Photo:</label>
-                <input type="file" id="bodyImage" name="bodyImage" accept="image/*">
+    <!-- Main Container -->
+    <div class="container">
+        <div class="body-analysis-section">
+            <h1>Analyze Your Measurements</h1>
+            <form>
+                <div>
+                    <label for="bodyImage">Upload Your Photo:</label>
+                    <input type="file" id="bodyImage" name="bodyImage" accept="image/*">
+                </div>
+                <div>
+                    <label for="measurements">Enter Your Measurements:</label>
+                    <input type="text" id="measurements" name="measurements" placeholder="e.g., Height, Waist, Bust">
+                </div>
+                <button type="submit">Analyze</button>
+            </form>
+            <div class="recommendation">
+                <h2>Our AI Suggests:</h2>
+                <a href="recommendations.html">View Latest Recommendations</a>
             </div>
-            <div class="form-group">
-                <label for="measurements">Enter Measurements:</label>
-                <input type="text" id="measurements" name="measurements" placeholder="e.g., Height, Waist, Bust">
-            </div>
-            <button type="submit">Analyze</button>
-        </form>
-
-        <div class="testimonials">
-            <h2>Our AI Suggest You :-</h2>
-            <a href="recommendations.html"a>Latest recommendations</a>
-        </div> 
-
-        <div class="social-links">
-            <a href="#" aria-label="Visit our Facebook page">Facebook</a>
-            <a href="#" aria-label="Follow us on Twitter">Twitter</a>
-            <a href="#" aria-label="Connect on Instagram">Instagram</a>
         </div>
-    </main>
+    </div>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Fashion Stylist Dashboard</p>
+        &copy; 2024 Body Analysis. All Rights Reserved.
     </footer>
 
+    <!-- GSAP Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
-        // GSAP Animations
+        // Register ScrollTrigger
         gsap.registerPlugin(ScrollTrigger);
 
-        // Animate form fields
-        gsap.from(".form-group", {
+        // Header fade-in and scale-up animation
+        gsap.from("header h1", {
             opacity: 0,
-            x: -50,
-            duration: 1,
-            stagger: 0.3,
+            scale: 0.8,
+            duration: 1.5,
+            ease: "power2.out",
         });
 
-        // Animate testimonials on scroll
-        gsap.from(".testimonial", {
+        // Slide-in effect for form fields
+        gsap.from("form div", {
+            opacity: 0,
+            x: -100,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power2.out",
+        });
+
+        // Animate the body analysis section
+        gsap.from(".body-analysis-section", {
             scrollTrigger: {
-                trigger: ".testimonials",
+                trigger: ".body-analysis-section",
                 start: "top 80%",
                 toggleActions: "play none none reset",
             },
             opacity: 0,
             y: 50,
             duration: 1,
-            stagger: 0.3,
-        });
-
-        // Social links animation
-        gsap.from(".social-links a", {
-            opacity: 0,
-            y: 30,
-            duration: 1,
-            delay: 0.5,
-            stagger: 0.2,
-            ease: "back.out(1.7)",
         });
     </script>
 </body>
