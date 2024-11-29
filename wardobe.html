@@ -1,11 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wardrobe Tracker</title>
-  <link rel="stylesheet" href="wardobe.css">
+
+  <style>
+    /* Import font */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background-color: #673ab7;
+      background: linear-gradient(to right, #5e35b1, #512da8);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Loading Screen */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    #loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #fff;
+      animation: fadeInOut 1s infinite alternate;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    /* Header Section */
+    header {
+      font-size: 3rem;
+      color: #fff;
+      padding: 1.5rem 0;
+      text-align: center;
+      font-weight: 600;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      opacity: 100;
+    }
+
+    /* Navigation Section */
+    nav.dashboard-nav {
+      margin-bottom: 2rem;
+    }
+
+    nav.dashboard-nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    nav.dashboard-nav ul li {
+      font-size: 1.2rem;
+    }
+
+    nav.dashboard-nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    nav.dashboard-nav ul li a:hover {
+      color: #d4c2f2;
+      transform: scale(1.1);
+    }
+
+    /* Image Slideshow */
+    #scroll {
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .scrollContainer {
+      display: flex;
+      gap: 1rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-image {
+      width: 300px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      opacity: 100;
+    }
+
+    .carousel-image.active {
+      opacity: 1;
+    }
+
+    .carousel-image:hover {
+      transform: scale(1.05);
+    }
+
+    /* Add New Item Section */
+    #add-item {
+      margin: 2rem 0;
+    }
+
+    #addNewItemBtn {
+      background: linear-gradient(to right, #512da8, #7e57c2);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    #addNewItemBtn:hover {
+      background: linear-gradient(to right, #7e57c2, #512da8);
+      transform: translateY(-3px);
+    }
+
+    /* Recommendations Section */
+    .recommendations {
+      text-align: center;
+      width: 100%;
+      margin-top: 3rem;
+    }
+
+    .recommendations h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      opacity:100;
+    }
+
+    .recommendations-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .recommendation-item {
+      background: #fff;
+      color: #333;
+      border-radius: 10px;
+      width: 250px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity:100;
+    }
+
+    .recommendation-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .recommendation-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .recommendation-item button {
+      background-color: #512da8;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .recommendation-item button:hover {
+      background-color: #7e57c2;
+    }
+
+    /* Footer Section */
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 1rem;
+      color: #f1f1f1;
+    }
+  </style>
 </head>
+
 <body>
   <!-- Loading Screen -->
   <div id="loading-screen">
@@ -27,18 +243,15 @@
     </ul>
   </nav>
 
-  <!-- Scroll Section with Image Carousel -->
+  <!-- Scroll Section with Slideshow -->
   <section id="scroll">
-    <div class="scrollContainer" id="scrollContainer">
-      <img class="carousel-image" src="https://plus.unsplash.com/premium_photo-1697876203137-3a87c8f066c1?q=80&w=2487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Red T-shirt" />
-      <img class="carousel-image" src="https://images.unsplash.com/photo-1577660002965-04865592fc60?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGJsdWUlMjBkZW5pbSUyMGphY2tldHxlbnwwfHwwfHx8MA%3D%3D" alt="Blue Denim Jacket" />
-      <img class="carousel-image" src="https://images.unsplash.com/photo-1604136172384-b2e9c43271ec?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmxhY2slMjBwYW50c3xlbnwwfHwwfHx8MA%3D%3D" alt="Black Pants" />
-      <img class="carousel-image" src="https://images.unsplash.com/photo-1553545985-1e0d8781d5db?q=80&w=2494&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sandals" />
+    <div class="scrollContainer">
+      <img class="carousel-image" src="https://as1.ftcdn.net/v2/jpg/02/28/55/86/1000_F_228558648_IbUYENc9hKfOTlleFgrkspGsEdHIC9KK.jpg" alt="Shirt">
+      <img class="carousel-image" src="https://www.byrdie.com/thmb/VbEWNDcTAx3RLBFcvpumlORYFaI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1475512417-4a69444b447e4a589488af142e28e0a1-cb08c03a8bcd4c4f9e660b9ed0af65b1.jpg" alt="Shirt">
       
-      <!-- New Image Blocks -->
-      <img class="carousel-image" src="https://plus.unsplash.com/premium_photo-1673125510222-1a51e3a8ccb0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGdyZXklMjBob29kaWV8ZW58MHx8MHx8fDA%3D" alt="Grey Hoodie" />
-      <img class="carousel-image" src="https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bGVhdGhlciUyMGphY2tldHxlbnwwfHwwfHx8MA%3D%3D" alt="Leather Jacket" />
-      <img class="carousel-image" src="https://images.unsplash.com/photo-1629097499121-290fd9a95dee?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmxhY2slMjBzbmVha2VyfGVufDB8fDB8fHww" alt="Black Sneakers" />
+      <img class="carousel-image" src="https://images.unsplash.com/photo-169920501hhttps://images.unsplash.com/photo-15176746-8aa2e6e48453?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxhY2slMjBwYW50c3xlbnwwfHwwfHx8MA%3D%3D" alt="Jacket">
+      <img class="carousel-image" src="https://images.unsplash.com/photo-1517850217902-e916d2476f2c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGJsdWUlMjBkZW5pbSUyMGphY2tldHxlbnwwfHwwfHx8MA%3D%3D" alt="Pants">
+      <img class="carousel-image" src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=2564&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sandals">
     </div>
   </section>
 
@@ -48,52 +261,79 @@
   </section>
 
   <!-- Recommendations Section -->
-<!-- Recommendations Section -->
-<section class="recommendations">
-  <h2>Recommended For You</h2>
-  <div class="recommendations-grid">
-    <div class="recommendation-item">
-      <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=2564&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Shoes" />
-      <p>Athletic Shoes</p>
-      <button onclick="window.location.href='https://www.amazon.in/s?k=Red+t+shirts&crid=28WGVMO0NGS6J&sprefix=red+t+shirts%2Caps%2C243&ref=nb_sb_noss_1'">View Details</button>
+  <section class="recommendations">
+    <h2>Recommended For You</h2>
+    <div class="recommendations-grid">
+      <div class="recommendation-item">
+        <img src="https://cdn.i-scmp.com/sites/default/files/styles/768x768/public/d8/images/methode/2020/09/05/0151ef7e-edb5-11ea-8288-5c49f42eee5c_image_hires_193040.jpg?itok=yw2S9oAj&v=1599344561" alt="Shoes">
+        <p>Athletic Shoes</p>
+        <button>View Details</button>
+      </div>
+      <div class="recommendation-item">
+        <img src="https://shoppingfactory23.in/cdn/shop/files/d05db328b038500d9e4635630de187eb.jpg?v=1725884334" alt="Jacket">
+        <p>Blue Denim Jacket</p>
+        <button>View Details</button>
+      </div>
     </div>
-    <div class="recommendation-item">
-      <img src="https://images.unsplash.com/photo-1517850217902-e916d2476f2c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGJsdWUlMjBkZW5pbSUyMGphY2tldHxlbnwwfHwwfHx8MA%3D%3D" alt="Denim Jacket" />
-      <p>Blue Denim Jacket</p>
-      <button onclick="window.location.href='https://www.amazon.in/s?k=Blue+Denim+Jacket&ref=nb_sb_noss_2'">View Details</button>
-      
-    </div>
-    <div class="recommendation-item">
-      <img src="https://images.unsplash.com/photo-1699205016746-8aa2e6e48453?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxhY2slMjBwYW50c3xlbnwwfHwwfHx8MA%3D%3D" alt="Black Suit" />
-      <p>Black Suit</p>
-      <button onclick="window.location.href='https://www.amazon.in/s?k=Black+Pants&ref=nb_sb_noss_3'">View Details</button>
-    </div>
-  </div>
-  <!-- Add "Click here for more" link -->
-  <div class="more-recommendations">
-    <a href="recommendations.html" target="_blank" class="more-link">Click here for more</a>
-  </div>
-</section>
-
+  </section>
 
   <!-- Footer Section -->
   <footer>
-    <p>&copy; 2024 Your Wardrobe Tracker. All rights reserved.</p>
+    &copy; 2024 Your Wardrobe Tracker. All rights reserved.
   </footer>
 
-  <!-- Add Item Modal -->
-  <div id="addItemModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" id="closeModalBtn">&times;</span>
-      <h3>Add New Item</h3>
-      <form id="newItemForm">
-        <input type="text" id="itemName" placeholder="Item Name" required>
-        <input type="url" id="itemImage" placeholder="Image URL" required>
-        <button type="submit">Add Item</button>
-      </form>
-    </div>
-  </div>
+  <!-- GSAP and ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script>
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
 
-  <script src="wardobe.js"></script>
+    // Hide loading screen after page load
+    window.onload = function () {
+      document.getElementById('loading-screen').classList.add('hidden');
+    };
+
+    // Header Animation
+    gsap.from("header", {
+      opacity: 0,
+      y: -50,
+      duration: 1.5,
+      ease: "power3.out",
+    });
+
+    // Recommendations Animation
+    gsap.from(".recommendations h2", {
+      opacity: 0,
+      y: 30,
+      duration: 1,
+      scrollTrigger: {
+        trigger: ".recommendations",
+        start: "top 80%",
+      },
+    });
+
+    gsap.from(".recommendation-item", {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: ".recommendations",
+        start: "top 70%",
+      },
+    });
+
+    // Carousel Slideshow
+    let images = document.querySelectorAll(".carousel-image");
+    let index = 0;
+    setInterval(() => {
+      images.forEach((img, i) => {
+        img.classList.toggle("active", i === index);
+      });
+      index = (index + 1) % images.length;
+    }, 3000);
+  </script>
 </body>
+
 </html>
