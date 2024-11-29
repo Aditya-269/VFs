@@ -1,249 +1,431 @@
-/* General Reset */
-* {
+/* Global Styles */
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-  scroll-behavior: smooth;
-}
-
-/* Body Styling */
-body {
-  background: linear-gradient(180deg, #f0f4f8, #e2e8f0);
+  background: linear-gradient(to bottom, #f8f8f8, #f2f2f2);
   color: #333;
-  font-size: 16px;
   line-height: 1.6;
-  overflow-x: hidden;
 }
 
-/* Loading Screen */
-#loading-screen {
-  position: fixed;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Header Section */
+header {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  animation: fadeInDown 1.5s ease;
+}
+
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.social-icons a {
+  color: #555;
+  margin: 0 10px;
+  font-size: 1.2rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #92614c;
+  transform: scale(1.2);
+}
+
+.logo img {
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.1);
+}
+
+.user-actions a {
+  color: #555;
+  margin-left: 20px;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.user-actions a:hover {
+  color: #92614c;
+}
+
+.navbar {
+  background-color: #fff;
+  padding: 15px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 0 15px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #92614c;
+  border-bottom: 2px solid #92614c;
+}
+
+/* Hero Slider */
+.hero-slider {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.slider {
+  display: flex;
+  transition: transform 1s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  filter: brightness(0.75);
+}
+
+.slide-caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.slide-caption h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+}
+
+.slide-caption p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.slide-caption .btn {
+  padding: 12px 25px;
+  background: linear-gradient(to right, #92614c, #b17d63);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.slide-caption .btn:hover {
+  background: #7b503d;
+  transform: translateY(-3px);
+}
+
+/* Video Background Section */
+/* Video Background Section */
+.video-background {
+  position: relative;
+  width: 100%;
+  height: 100vh;  /* Increase the height (70% of the viewport height) */
+  overflow: hidden;
+  margin:0;
+  padding: 0%;
+}
+
+.video-wrapper {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #ff6f61, #de6f8b);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  backdrop-filter: blur(10px);
-}
-
-.loader {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  animation: fadeInOut 2.5s infinite ease-in-out;
-}
-
-@keyframes fadeInOut {
-  0%, 100% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-/* Header */
-header {
-  background: linear-gradient(135deg, #ff6f61, #de6f8b);
-  color: white;
-  padding: 6rem 0; /* More padding for a modern feel */
-  text-align: center;
-  font-size: 3.5rem; /* Larger header for impact */
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 2px;
-  position: relative;
   overflow: hidden;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
-  animation: slideIn 0.5s ease forwards;
 }
 
-@keyframes slideIn {
-  from {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* Ensure the video covers the entire section */
+  z-index: -1;
 }
 
-/* Navigation */
-.dashboard-nav ul {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  padding: 1rem 0;
-  margin-top: -3rem;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 50px;
-  backdrop-filter: blur(15px);
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);  /* Dark overlay for better contrast */
+  z-index: 1;
 }
 
-.dashboard-nav ul li a {
-  text-decoration: none;
-  color: #333;
-  font-size: 1.2rem;
-  font-weight: 600;
-  padding: 1rem 2rem;
-  border-radius: 30px;
+.video-section .container {
   position: relative;
-  transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease;
-}
-
-.dashboard-nav ul li a:hover {
-  background: linear-gradient(135deg, #ff6f61, #de6f8b);
+  z-index: 2;
+  text-align: center;
   color: white;
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(255, 117, 140, 0.4);
+  padding-top: 100px;  /* Adjust padding to center the text */
 }
 
-/* Scroll Section */
-#scroll {
-  height: 25vw;
-  overflow-x: auto;
-  white-space: nowrap;
-  margin: 2rem auto;
-  padding: 1rem;
-  position: relative;
-}
-
-#scroll .scrollContainer {
-  display: inline-flex;
-}
-
-#scroll img {
-  width: 18vw;
-  height: 20vw;
-  border-radius: 50%;
-  margin: 0 1rem;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-#scroll img:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 16px rgba(255, 117, 140, 0.5);
+.video-section h2 {
+  font-size: 3rem;  /* Make the title larger */
+  margin-top: 0; /* Adjust for better positioning */
 }
 
 /* Recommendations Section */
 .recommendations {
-  padding: 5rem 2rem; /* Increased padding */
-  background: #ffffff;
-  margin-top: 3rem;
-  border-radius: 30px;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 20px 15px;
 }
 
 .recommendations h2 {
-  text-align: center;
+  margin-bottom: 30px;
   font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 3rem;
   color: #333;
+  letter-spacing: 1px;
 }
 
+/* Grid for 3 items per row (2 rows in total) */
 .recommendations-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+  gap: 20px; /* Space between items */
+  padding: 20px 0;
+  margin-top: 30px;
 }
 
+/* Recommendation Item Styling */
 .recommendation-item {
-  background: linear-gradient(145deg, #f0f4f8, #ffffff);
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 -10px 20px rgba(255, 255, 255, 0.5);
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-  position: relative;
-}
-
-.recommendation-item img {
-  width: 100%;
-  border-radius: 15px;
-  margin-bottom: 1rem;
-  transition: transform 0.4s ease, filter 0.4s ease;
-}
-
-.recommendation-item:hover img {
-  transform: scale(1.05) rotate(3deg);
-  filter: brightness(90%);
 }
 
 .recommendation-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.recommendation-item img {
+  max-width: 100%;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.recommendation-item img:hover {
+  transform: scale(1.05);
 }
 
 .recommendation-item p {
-  font-size: 1.4rem;
+  margin: 10px 0;
   font-weight: 600;
-  color: #444;
+  color: #333;
 }
 
-.recommendation-item button {
-  padding: 0.8rem 1.5rem;
-  background: linear-gradient(135deg, #ff6f61, #de6f8b);
-  color: white;
+.recommendation-item .price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #92614c;
+  margin-bottom: 15px;
+}
+
+/* Buttons for Save and Buy Now */
+.btn {
+  margin: 5px;
+  padding: 10px 15px;
   border: none;
-  border-radius: 25px;
-  font-size: 1.1rem; /* Increased button font size */
-  font-weight: bold;
+  border-radius: 5px;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(255, 117, 140, 0.4);
-  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  font-weight: 600;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.recommendation-item button:hover {
-  background: linear-gradient(135deg, #de6f8b, #ff6f61);
-  transform: translateY(-2px) scale(1.05); /* Added scale effect */
-  box-shadow: 0 8px 24px rgba(255, 117, 140, 0.5);
+.save-btn {
+  background-color: #92614c;
+  color: #fff;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 2rem;
-  background: linear-gradient(135deg, #ff6f61, #de6f8b);
-  color: white;
+.save-btn:hover {
+  background-color: #7b503d;
+  transform: translateY(-3px);
+}
+
+.buy-btn {
+  background-color: #333;
+  color: #fff;
+}
+
+.buy-btn:hover {
+  background-color: #444;
+  transform: translateY(-3px);
+}
+
+/* More Button */
+.more-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 30px;
+  background-color: #92614c;
+  color: #fff;
   font-size: 1rem;
-  border-radius: 30px 30px 0 0;
-  box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 0.5s ease forwards;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+.more-btn:hover {
+  background-color: #7b503d;
+  transform: translateY(-3px);
+}
+
+/* Footer Section */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 30px 0;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 40px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+footer .social-footer a {
+  color: #fff;
+  margin: 0 10px;
+  font-size: 1.2rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+footer .social-footer a:hover {
+  color: #92614c;
+  transform: scale(1.2);
+}
+
+/* Animations */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
+  0% {
+      opacity: 0;
   }
-  to {
-    opacity: 1;
+  100% {
+      opacity: 1;
   }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  header {
-    font-size: 2.5rem; /* Smaller header on mobile */
+@keyframes fadeInUp {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
   }
-  .dashboard-nav ul li a {
-    font-size: 1rem; /* Smaller nav links on mobile */
+  100% {
+      opacity: 1;
+      transform: translateY(0);
   }
-  .recommendation-item {
-    padding: 1.5rem; /* Reduced padding for smaller screens */
+}
+
+@keyframes fadeInDown {
+  0% {
+      opacity: 0;
+      transform: translateY(-20px);
   }
-  .recommendation-item button {
-    font-size: 0.9rem; /* Smaller buttons on mobile */
+  100% {
+      opacity: 1;
+      transform: translateY(0);
   }
+}
+
+@keyframes slideFade {
+  0% {
+      opacity: 0;
+      transform: translateX(-20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+.video-background .container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  padding: 0; /* Remove padding to align with the top and bottom */
+}
+
+.video-background h2 {
+  font-size: 3rem;
+  margin: 0;
+  color: gold;
+}
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  margin: 0; /* Remove margin to eliminate whitespace */
+}
+
+.hero-section video {
+  width: 100%;
+  height: 100vh; /* Full height of the viewport */
+  object-fit: cover;
+  filter: brightness(0.75); /* Dim the video for better text contrast */
 }
