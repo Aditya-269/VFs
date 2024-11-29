@@ -12,6 +12,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 </head>
 <body>
+    <div id="preloader">
+        <div class="spinner"></div>
+        <p>YOUR VIRTUAL AI FASHION STYLIST...</p>
+    </div>
+    
     <!-- Header Section -->
     <header>
         <div class="top-header">
@@ -102,6 +107,10 @@
 
     <!-- Scripts -->
     <script>
+         window.addEventListener("load", function () {
+        const preloader = document.getElementById("preloader");
+        preloader.classList.add("hidden");
+    });
         document.addEventListener("DOMContentLoaded", function () {
             const products = [
                 { img: "https://www.oldmarigold.com/cdn/shop/files/1_d7d02fbf-f3fd-4de0-8c20-bc1dd101d045.png?v=1711477361&width=1000", name: "Chic Summer Dress", price: "$49.99" },
