@@ -161,7 +161,7 @@
     <div class="container">
         <div class="body-analysis-section">
             <h1>Analyze Your Measurements</h1>
-            <form>
+            <form action="http://192.168.0.119:8501/" method="GET">
                 <label for="bodyImage">Upload Your Photo:</label>
                 <input type="file" id="bodyImage" name="bodyImage" accept="image/*">
 
@@ -185,6 +185,7 @@
     <!-- GSAP Animation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
+        // GSAP Animations
         gsap.from("header h1", {
             opacity: 0,
             y: -50,
@@ -200,13 +201,11 @@
             delay: 0.5,
         });
 
-        gsap.from("form div", {
-            opacity: 0,
-            y: 20,
-            duration: 1,
-            stagger: 0.3,
-            ease: "power3.out",
-        });
+        // Pre-fill the measurements field
+        window.onload = function() {
+            const measurementsInput = document.getElementById('measurements');
+            measurementsInput.value = "Height: 170 cm, Waist: 30 inches, Bust: 36 inches";
+        };
     </script>
 </body>
 </html>
