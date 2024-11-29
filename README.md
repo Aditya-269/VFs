@@ -1,4 +1,5 @@
 #AI-Driven Virtual Fashion Stylist
+
 Project Description
 The AI-Driven Virtual Fashion Stylist is an innovative application that provides personalized fashion recommendations based on body type, personal preferences, and existing wardrobe. The project leverages AI, computer vision, and machine learning techniques for body type analysis, outfit suggestions, and wardrobe management.
 
@@ -13,8 +14,7 @@ Installation
 1. Clone the Repository
 bash
 Copy code
-git clone https://github.com/your-username/ai-fashion-stylist.git
-cd ai-fashion-stylist
+git clone 
 2. Install Dependencies
 For the backend:
 bash
@@ -43,7 +43,7 @@ bash
 Copy code
 cd frontend
 npm start
-Now, you can access the app at http://localhost:3000.
+
 Usage
 Once the app is running, you can:
 Upload photos to analyze your body type.
