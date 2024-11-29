@@ -1,16 +1,22 @@
 #AI-Driven Virtual Fashion Stylist
 
 Project Description
+
 The AI-Driven Virtual Fashion Stylist is an innovative application that provides personalized fashion recommendations based on body type, personal preferences, and existing wardrobe. The project leverages AI, computer vision, and machine learning techniques for body type analysis, outfit suggestions, and wardrobe management.
 
 Features
+
 Personalized Fashion Recommendations: Provides fashion suggestions based on the user’s body type and preferences.
 Body Type Analysis: Uses computer vision techniques and AI models to analyze body shapes and generate style suggestions accordingly.
 Wardrobe Management: Tracks the user’s existing wardrobe and suggests new outfits from their own clothes.
+
 Tech Stack
+
 Frontend: React, JavaScript, HTML, CSS
 Backend: Python
+
 Installation
+
 1. Clone the Repository
 bash
 Copy code
