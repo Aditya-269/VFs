@@ -12,7 +12,7 @@ Wardrobe Management: Tracks the user’s existing wardrobe and suggests new outf
 
 Tech Stack
 
-Frontend: React, JavaScript, HTML, CSS
+Frontend: JavaScript, HTML, CSS
 Backend: Python
 
 Installation
