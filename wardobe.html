@@ -516,7 +516,7 @@ window.addEventListener('click', function(event) {
   }
 });
 
-// Form Submission to Add Item
+// Form Submission to Add Items
 const newItemForm = document.getElementById('newItemForm');
 newItemForm.addEventListener('submit', function(e) {
   e.preventDefault();
@@ -525,7 +525,7 @@ newItemForm.addEventListener('submit', function(e) {
   const itemImage = document.getElementById('itemImage').value;
 
   // You can add logic here to store the item in localStorage or backend (not implemented here)
-    // Close the modal
+    // Close the modals
   addItemModal.style.display = 'none';
   alert(`Added ${itemName} with image: ${itemImage}`);
   addItemModal.style.display = 'none';
