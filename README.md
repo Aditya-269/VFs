@@ -49,9 +49,8 @@ bash
 Copy code
 cd frontend
 npm start
-
 Usage
-Once the app is running, you can:
+Once the app is running, you can: try this and enjoy
 Upload photos to analyze your body type.
 Track your existing wardrobe by uploading images of clothes.
 Get personalized outfit recommendations based on your wardrobe.
